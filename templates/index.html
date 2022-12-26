@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <head>
-  <title>OpenAI Quickstart</title>
+  <title>Profile Generator</title>
   <link
     rel="shortcut icon"
-    href="{{ url_for('static', filename='dog.png') }}"
+    href="{{ url_for('static', filename='profile.png') }}"
   />
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
 </head>
 
 <body>
-  <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
-  <h3>Name my pet</h3>
+  <h3>Generate Any Profile</h3>
   <form action="/" method="post">
-    <input type="text" name="animal" placeholder="Enter an animal" required />
-    <input type="submit" value="Generate names" />
+    <input type="text" name="name" placeholder="Place the name" required />
+    <select name="profession" id="profession">
+      <option value="Singer">Singer</option>
+      <option value="Politician">Politician</option>
+      <option value="Actor" selected>Actor</option>
+      <option value="Player">Player</option>
+    </select>
+    <input type="submit" value="Generate Profile" />
   </form>
-  {% if result %}
-  <div class="result">{{ result }}</div>
-  {% endif %}
+  <div>
+    {% for header, paragraph in results%}
+      <h4> {{header}} </h4>
+      <p>{{paragraph}}</p>
+    {% endfor%}
+  </div>
 </body>
